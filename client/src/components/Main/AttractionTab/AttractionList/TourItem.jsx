@@ -3,25 +3,50 @@ import styles from 'styled-components';
 import PropTypes from 'prop-types';
 import { TotalContext } from './../../../../stores';
 
+const Container = styles.div`
+  background: white;
+  border-radius: .8em;
+  display: flex;
+  justifyContent: between-space;
+  padding: 1em;
+`;
+const Info = styles.div`
+`;
+
+const Name = styles.div`
+  font-size: 1.2em;
+`;
+const Price = styles.div`
+  font-size: 1.1em;
+  margin: 0.4em 0;
+  color: #fe5d41;
+`;
+const Rank = styles.div`
+  color: #666;
+`;
+
+const Thumbnail = styles.img`
+  margin-left: auto;
+  height: 4.1em;
+`;
+
 const TourItem = ({ _id, name, price, rank, image }) => {
   const { setTour } = useContext(TotalContext);
-  const Thumbnail = styles.div`
-        background-image: url(${image});
-        color: white;
-        background-repeat: no-repeat;
-        background-size: contain;
-    `;
+
   const selectTour = useCallback(() => {
     console.log('현재 투어 변경');
     setTour({ _id, name, price, rank, image });
   });
 
   return (
-    <Thumbnail onClick={selectTour}>
-      <div>{name}</div>
-      <div>{price}</div>
-      <div>{rank}</div>
-    </Thumbnail>
+    <Container onClick={selectTour}>
+      <Info>
+        <Name>{name}</Name>
+        <Price>\{price}</Price>
+        <Rank>{rank}</Rank>
+      </Info>
+      <Thumbnail src={image} alt={name} />
+    </Container>
   );
 };
 
