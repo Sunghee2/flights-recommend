@@ -7,6 +7,7 @@ const Section = Styled.section`
   display: flex;
   flex: 1;
   flex-direction: column;
+  padding: .4em;
 `;
 
 const AttractionTab = _ => {

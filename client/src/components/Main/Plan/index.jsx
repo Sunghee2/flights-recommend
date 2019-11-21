@@ -5,7 +5,9 @@ import DayPlan from './DayPlan';
 
 const Section = styles.section`
   display: flex;
+  flex-direction: column;
   flex: 1;
+  padding: .4em;
 `;
 
 const Title = styles.h2`

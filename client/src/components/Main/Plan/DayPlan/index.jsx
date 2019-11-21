@@ -1,8 +1,18 @@
 import React, { useCallback, useContext } from 'react';
 import PropTypes from 'prop-types';
+import styles from 'styled-components';
 import { TotalContext, IterContext } from './../../../../stores';
 import TourPlan from './TourPlan';
 import HotelPlan from './HotelPlan';
+
+const DayContainer = styles.div`
+  display: flex;
+`;
+
+const Day = styles.h2`
+  font-size: 1.5em;
+  color: #2c3e50;
+`;
 
 const DayPlan = ({ index, hotel, tours }) => {
   const { currentHotel, currentTour, setHotel, setTour } = useContext(TotalContext);
@@ -48,8 +58,8 @@ const DayPlan = ({ index, hotel, tours }) => {
     setTour({});
   });
   return (
-    <div onClick={selectDay}>
-      <h2>Day {index}</h2>
+    <DayContainer onClick={selectDay}>
+      <Day>Day {index}</Day>
       {Object.keys(hotel).length > 0 && (
         <HotelPlan
           _id={hotel._id}
@@ -61,7 +71,7 @@ const DayPlan = ({ index, hotel, tours }) => {
         />
       )}
       <div>{Tours}</div>
-    </div>
+    </DayContainer>
   );
 };
 
