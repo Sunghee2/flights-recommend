@@ -1,5 +1,11 @@
-import DB from '../../../models/sample';
-
+import Hotel from "../../../models/hotel"
+import Local from "../../../models/local"
+import Plan from "../../../models/plan"
+import Ticket from "../../../models/ticket"
+import MatchingDataHotel from "../../../models/matching-data-hotel"
+import MatchingDataLocal from "../../../models/matching-data-local"
+import mongoose from 'mongoose';
+var db = mongoose.connection; // db will have the opened connection
 export default {
   Query: {
     tickets: async () => {
@@ -35,22 +41,19 @@ export default {
         },
       ];
     },
-    // recommend_hotel: async (_, {
-    //   airport,
-    // }) => {
-    //   const hotels = await DB.matching_data_hotel.aggregate([
-    //     { "$match": { "airport": airport } },
-    //       {
-    //           "$lookup": {
-    //               "from": "hotel",
-    //               "localField": "placeId",
-    //               "foreignField": "cityId",
-    //               "as": "hotels"
-    //           }
-    //       }
-    //   ]);
-    //   return hotels;
-    // }, 
+    recommend_hotel: async (_, {
+      airport,
+    }) => {
+      const data = await MatchingDataHotel.findOne({airport : airport});
+      const hotels = await Hotel.find({WKPlaceID : data.placeId}).sort({OverallRating: -1});
+      for(var i = 0; i < hotels.length; i++){
+        hotels[i]['price'] = hotels[i]['MinRateKRW'];
+        hotels[i]['rate'] = hotels[i]['OverallRating'];
+        hotels[i]['name'] = hotels[i]['HotelName'];
+        hotels[i]['image'] = "http://www.nobrandtour.com/upfiles/product/3760188944.jpg"
+      }
+      return hotels;
+    },
     // recommend_tour: async (_, {
     //   airport,
     // }) => {
@@ -58,7 +61,6 @@ export default {
     //   //cityIds가 어레이인데 어레이안에 있는 애를 어떻게 꺼낼까?
     //   const tickets = await DB.ticket.find({cityIds : LocalId});
     //   const locals = await DB.locals.find({cityIds : LocalId});
-
     //   return tickets;
     // }, 
 
