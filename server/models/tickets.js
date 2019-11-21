@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 //image가 없습니다.
 //index를 추가해야합니다.
 const ticketsSchema = new mongoose.Schema({
-    tickets: [{
+    ticket: [{
         title: {
             type: String,
             required: true,
