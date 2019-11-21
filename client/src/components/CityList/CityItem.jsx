@@ -6,14 +6,15 @@ import { CityContext } from './../../stores';
 const ItemBody = Styled.li`
 `;
 
-const CityItem = props => {
+const CityItem = ({ name, airport }) => {
   console.log('CityItem');
   const { setCity } = useContext(CityContext);
+
   const changeCity = useCallback(() => {
-    setCity({ name: props.name, airport: props.airport });
+    setCity({ name, airport });
   });
 
-  return <ItemBody onClick={changeCity}>{props.name}</ItemBody>;
+  return <ItemBody onClick={changeCity}>{name}</ItemBody>;
 };
 
 CityItem.propTypes = {

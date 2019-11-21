@@ -2,7 +2,7 @@ import React from 'react';
 import styles from 'styled-components';
 import PropTypes from 'prop-types';
 
-const HotelItem = ({ name, price, rate, image }) => {
+const TourItem = ({ name, price, rank, image }) => {
   const Thumbnail = styles.div`
         background-image: url(${image});
         color: white;
@@ -14,16 +14,16 @@ const HotelItem = ({ name, price, rate, image }) => {
     <Thumbnail>
       <div>{name}</div>
       <div>{price}</div>
-      <div>{rate}</div>
+      <div>{rank}</div>
     </Thumbnail>
   );
 };
 
-HotelItem.propTypes = {
+TourItem.propTypes = {
   name: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
-  rate: PropTypes.number.isRequired,
+  rank: PropTypes.number.isRequired,
   image: PropTypes.string.isRequired,
 };
 
-export default HotelItem;
+export default TourItem;
