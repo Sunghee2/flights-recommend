@@ -14,11 +14,10 @@ const HomePage = ({ match, history, location }) => {
         <Link to="/plan/111">Plan</Link>
         <TicketList />
         <CityList />
-        <Title label="Hello World!" />
+        <TotalStore>
+          <Main />
+        </TotalStore>
       </CityStore>
-      <TotalStore>
-        <Main />
-      </TotalStore>
     </div>
   );
 };
