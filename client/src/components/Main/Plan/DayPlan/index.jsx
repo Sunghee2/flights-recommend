@@ -1,8 +1,25 @@
 import React, { useCallback, useContext } from 'react';
 import PropTypes from 'prop-types';
+import styles from 'styled-components';
 import { TotalContext, IterContext } from './../../../../stores';
 import TourPlan from './TourPlan';
 import HotelPlan from './HotelPlan';
+
+const DayContainer = styles.div`
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+`;
+
+const Day = styles.h2`
+  font-size: 1.5em;
+  color: #2c3e50;
+`;
+
+const List = styles.div`
+  display: flex;
+  padding: .4em 0;
+`;
 
 const DayPlan = ({ index, hotel, tours }) => {
   const { currentHotel, currentTour, setHotel, setTour } = useContext(TotalContext);
@@ -48,20 +65,22 @@ const DayPlan = ({ index, hotel, tours }) => {
     setTour({});
   });
   return (
-    <div onClick={selectDay}>
-      <h2>Day {index}</h2>
-      {Object.keys(hotel).length > 0 && (
-        <HotelPlan
-          _id={hotel._id}
-          name={hotel.name}
-          price={hotel.price}
-          rate={hotel.rate}
-          image={hotel.image}
-          index={index}
-        />
-      )}
-      <div>{Tours}</div>
-    </div>
+    <DayContainer onClick={selectDay}>
+      <Day>Day {index}</Day>
+      <List>
+        {Object.keys(hotel).length > 0 && (
+          <HotelPlan
+            _id={hotel._id}
+            name={hotel.name}
+            price={hotel.price}
+            rate={hotel.rate}
+            image={hotel.image}
+            index={index}
+          />
+        )}
+        {Tours}
+      </List>
+    </DayContainer>
   );
 };
 

@@ -3,12 +3,18 @@ import Styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { TotalContext } from './../../../../stores';
 
-const TabBody = Styled.li`
-`;
-
 const TabItem = props => {
   const { setHotel, setTour } = useContext(TotalContext);
   console.log('TabItem');
+  const TabBody = Styled.li`
+  color: white;
+  cursor: pointer;
+  text-transform: uppercase;
+  ${props.active && `border-bottom: 1px solid white;`}
+  padding: .4em;
+  margin: .6em;
+  font-size: 1.1em;
+  `;
   const changeTab = useCallback(() => {
     props.setCurrentTab(props.name);
     switch (props.name) {

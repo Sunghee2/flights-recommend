@@ -1,8 +1,13 @@
 import React from 'react';
-import styled from 'styled-components';
+import Styled from 'styled-components';
 import { useQuery } from '@apollo/react-hooks';
 import GET_TICKETS from './query';
 import TicketItem from './TicketItem';
+
+const ListBody = Styled.ul`
+  display: flex;
+  justify-content: center;
+`;
 
 const TicketList = _ => {
   const { loading, error, data } = useQuery(GET_TICKETS);
@@ -47,7 +52,7 @@ const TicketList = _ => {
     <TicketItem key={_id} length={length} tripType={tripType} cities={cities} />
   ));
 
-  return <div>{Tickets}</div>;
+  return <ListBody>{Tickets}</ListBody>;
 };
 
 export default TicketList;

@@ -3,6 +3,13 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { CityContext, IterContext } from './../../stores';
 
+const ItemBody = styled.li`
+  margin: 2em 2em 0.6em 2em;
+  padding: 1em 1.6em;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+`;
 const Type = styled.div``;
 
 const TicketItem = ({ length, tripType, cities }) => {
@@ -21,9 +28,9 @@ const TicketItem = ({ length, tripType, cities }) => {
     );
   });
   return (
-    <div onClick={selectTicket}>
+    <ItemBody onClick={selectTicket}>
       <Type>{tripType}</Type>
-    </div>
+    </ItemBody>
   );
 };
 

@@ -3,17 +3,21 @@ import Styled from 'styled-components';
 import TabList from './TabList';
 import AttractionList from './AttractionList';
 
-const Body = Styled.div`
+const Section = Styled.section`
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: .4em;
 `;
 
 const AttractionTab = _ => {
   const [currentTab, setCurrentTab] = useState('hotel');
 
   return (
-    <Body>
+    <Section>
       <TabList currentTab={currentTab} setCurrentTab={setCurrentTab} />
       <AttractionList currentTab={currentTab} />
-    </Body>
+    </Section>
   );
 };
 
