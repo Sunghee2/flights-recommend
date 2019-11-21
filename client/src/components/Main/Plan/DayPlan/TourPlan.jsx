@@ -3,7 +3,7 @@ import styles from 'styled-components';
 import PropTypes from 'prop-types';
 import { IterContext, TotalContext } from '../../../../stores';
 
-const HotelPlan = ({ index, _id, name, price, rate, image }) => {
+const TourPlan = ({ index, _id, name, price, rank, image }) => {
   const { setDays } = useContext(IterContext);
   const { currentHotel, currentTour } = useContext(TotalContext);
   const Thumbnail = styles.div`
@@ -12,14 +12,14 @@ const HotelPlan = ({ index, _id, name, price, rate, image }) => {
         background-repeat: no-repeat;
         background-size: contain;
     `;
-
-  const deleteHotel = useCallback(() => {
+  const deleteTour = useCallback(() => {
     if (Object.keys(currentHotel).length === 0 && Object.keys(currentTour).length === 0) {
-      console.log('현재 호텔 삭제');
+      console.log('현재 투어 삭제');
       setDays(prev =>
         prev.map(day => {
           if (day.index === index) {
-            return Object.assign(day, { hotel: {} });
+            const { tours } = day;
+            return Object.assign(day, { tours: tours.filter(tour => tour._id !== _id) });
           }
           return day;
         }),
@@ -28,21 +28,21 @@ const HotelPlan = ({ index, _id, name, price, rate, image }) => {
   });
 
   return (
-    <Thumbnail onClick={deleteHotel}>
+    <Thumbnail onClick={deleteTour}>
       <div>{name}</div>
       <div>{price}</div>
-      <div>{rate}</div>
+      <div>{rank}</div>
     </Thumbnail>
   );
 };
 
-HotelPlan.propTypes = {
+TourPlan.propTypes = {
   index: PropTypes.number.isRequired,
   _id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
-  rate: PropTypes.number.isRequired,
+  rank: PropTypes.number.isRequired,
   image: PropTypes.string.isRequired,
 };
 
-export default HotelPlan;
+export default TourPlan;

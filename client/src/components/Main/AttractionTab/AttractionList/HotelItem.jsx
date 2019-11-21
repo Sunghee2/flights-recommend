@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext, useCallback } from 'react';
 import styles from 'styled-components';
 import PropTypes from 'prop-types';
+import { TotalContext } from './../../../../stores';
 
-const HotelItem = ({ name, price, rate, image }) => {
+const HotelItem = ({ _id, name, price, rate, image }) => {
+  const { setHotel } = useContext(TotalContext);
   const Thumbnail = styles.div`
         background-image: url(${image});
         color: white;
@@ -10,8 +12,13 @@ const HotelItem = ({ name, price, rate, image }) => {
         background-size: contain;
     `;
 
+  const selectHotel = useCallback(() => {
+    console.log('현재 호텔 변경');
+    setHotel({ _id, name, price, rate, image });
+  });
+
   return (
-    <Thumbnail>
+    <Thumbnail onClick={selectHotel}>
       <div>{name}</div>
       <div>{price}</div>
       <div>{rate}</div>
@@ -20,6 +27,7 @@ const HotelItem = ({ name, price, rate, image }) => {
 };
 
 HotelItem.propTypes = {
+  _id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   rate: PropTypes.number.isRequired,

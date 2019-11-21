@@ -15,7 +15,6 @@ const TabList = props => {
     <ListBody>
       {tabList.map((tab, index) => {
         const active = tab === props.currentTab;
-
         return (
           <TabItem key={index} name={tab} active={active} setCurrentTab={props.setCurrentTab} />
         );

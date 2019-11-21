@@ -1,13 +1,21 @@
-import React, { useContext } from 'react';
-import { IterContext, IterStore } from '../../../stores';
+import React, { useEffect, useContext } from 'react';
+import { IterContext } from '../../../stores';
+import DayPlan from './DayPlan';
 
 const Plan = _ => {
+  console.log('plan');
   const { days } = useContext(IterContext);
+
+  useEffect(() => {
+    console.log(days);
+  }, [days]);
+
   return (
     <div>
-      <IterStore>
-        <div>일정</div>
-      </IterStore>
+      <div>일정</div>
+      {days.map(({ index, hotel, tours }) => (
+        <DayPlan key={index} index={index} hotel={hotel} tours={tours} />
+      ))}
     </div>
   );
 };
