@@ -5,7 +5,8 @@ import { CityContext } from './../../stores';
 
 const ListBody = Styled.ul`
   display: flex;
-  margin-left: 4em;
+  justify-content: center;
+  margin-bottom: 2em;
 `;
 const ItemName = Styled.div`
 
