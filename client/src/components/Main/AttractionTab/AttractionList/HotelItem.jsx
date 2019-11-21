@@ -9,6 +9,7 @@ const Container = styles.div`
   display: flex;
   justifyContent: between-space;
   padding: 1em;
+  margin-bottom: 1em;
 `;
 const Info = styles.div`
 `;

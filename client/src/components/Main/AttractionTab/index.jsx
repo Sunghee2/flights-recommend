@@ -6,6 +6,7 @@ import AttractionList from './AttractionList';
 const Section = Styled.section`
   display: flex;
   flex: 1;
+  flex-direction: column;
 `;
 
 const AttractionTab = _ => {

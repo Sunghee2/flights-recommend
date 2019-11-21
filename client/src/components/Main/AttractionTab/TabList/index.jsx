@@ -4,6 +4,8 @@ import TabItem from './TabItem';
 import PropTypes from 'prop-types';
 
 const ListBody = Styled.ul`
+  display: flex;
+  margin-left: .8em;
 `;
 
 const tabList = ['hotel', 'tour'];
