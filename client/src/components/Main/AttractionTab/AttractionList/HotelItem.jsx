@@ -1,11 +1,21 @@
 import React from 'react';
+import styles from 'styled-components';
 import PropTypes from 'prop-types';
 
 const HotelItem = ({ name, price, rate, image }) => {
+  const Thumbnail = styles.div`
+        background-image: url(${image});
+        color: white;
+        background-repeat: no-repeat;
+        background-size: contain;
+    `;
+
   return (
-    <div>
+    <Thumbnail>
       <div>{name}</div>
-    </div>
+      <div>{price}</div>
+      <div>{rate}</div>
+    </Thumbnail>
   );
 };
 
