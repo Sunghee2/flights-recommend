@@ -8,10 +8,10 @@ const ItemBody = Styled.li`
 
 const CityItem = ({ name, airport }) => {
   console.log('CityItem');
-  const { setCity } = useContext(CityContext);
+  const { city, setCity } = useContext(CityContext);
 
   const changeCity = useCallback(() => {
-    setCity({ name, airport });
+    if (city.airport !== airport) setCity({ name, airport });
   });
 
   return <ItemBody onClick={changeCity}>{name}</ItemBody>;
