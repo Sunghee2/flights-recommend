@@ -5,6 +5,10 @@ import GET_RECOMMAND from './query';
 import { CityContext } from '../../../../stores';
 import HotelItem from './HotelItem';
 import TourItem from './TourItem';
+import Styled from 'styled-components';
+
+const ListBody = Styled.ul`
+`;
 
 const AttractionList = ({ currentTab }) => {
   const { city } = useContext(CityContext);
@@ -71,10 +75,10 @@ const AttractionList = ({ currentTab }) => {
     <TourItem key={_id} name={name} price={price} rank={rank} image={image} />
   ));
   return (
-    <div>
+    <ListBody>
       {currentTab === 'hotel' && hotels}
       {currentTab === 'tour' && tours}
-    </div>
+    </ListBody>
   );
 };
 
