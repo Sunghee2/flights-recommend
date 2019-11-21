@@ -10,7 +10,7 @@ const TicketList = _ => {
   if (loading) return <div>loading...</div>;
   //   if (error) return <div>error</div>;
 
-  //   const Tickets = data.tickets.map(({ name, airport }) => <TicketItem key={airport} name={name} />);
+  //   const Tickets = data.tickets.map(({ _id, tripType, cities }) => (    <TicketItem key={_id} tripType={tripType} cities={cities} />    ));
 
   const Tickets = [
     { _id: '1', tripType: 'OW', cities: [{ name: '인천', airport: 'INC' }] },
