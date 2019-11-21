@@ -4,6 +4,8 @@ import CityItem from './CityItem';
 import { CityContext } from './../../stores';
 
 const ListBody = Styled.ul`
+  display: flex;
+  margin-left: 4em;
 `;
 const ItemName = Styled.div`
 

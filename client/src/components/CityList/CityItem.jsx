@@ -4,6 +4,11 @@ import PropTypes from 'prop-types';
 import { CityContext } from './../../stores';
 
 const ItemBody = Styled.li`
+  margin: 0em 0.6em;
+  padding: 0.6em 1.2em;
+  border: solid 0.5px white;
+  border-radius: 3em;
+  color: white;
 `;
 
 const CityItem = ({ name, airport }) => {
