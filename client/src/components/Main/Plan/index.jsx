@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { IterContext, IterStore } from './IterStore';
+import { IterContext, IterStore } from '../../../stores';
 
 const Plan = _ => {
   const { days } = useContext(IterContext);
