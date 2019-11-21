@@ -8,6 +8,13 @@ const Section = styles.section`
   flex: 1;
 `;
 
+const Title = styles.h2`
+  color: white;
+  font-size: 1.1em;
+  padding: .4em;
+  margin: .6em;
+`;
+
 const Plan = _ => {
   console.log('plan');
   const { days } = useContext(IterContext);
@@ -18,7 +25,7 @@ const Plan = _ => {
 
   return (
     <Section>
-      <div>일정</div>
+      <Title>일정</Title>
       {days.map(({ index, hotel, tours }) => (
         <DayPlan key={index} index={index} hotel={hotel} tours={tours} />
       ))}
