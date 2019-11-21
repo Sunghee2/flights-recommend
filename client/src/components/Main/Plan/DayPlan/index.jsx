@@ -10,7 +10,7 @@ const DayPlan = ({ index, hotel, tours }) => {
   const Tours = tours.map(({ _id, name, price, rank, image }) => (
     <TourItem key={_id} name={name} price={price} rank={rank} image={image} />
   ));
-
+  console.log('DayPlan');
   const selectDay = useCallback(() => {
     setDays(prev => {
       const length = prev.length;
@@ -38,8 +38,15 @@ const DayPlan = ({ index, hotel, tours }) => {
   });
   return (
     <div onClick={selectDay}>
-      {hotel && (
-        <HotelItem name={hotel.name} price={hotel.price} rate={hotel.rate} image={hotel.image} />
+      <h2>Day {index}</h2>
+      {Object.keys(hotel).length > 0 && (
+        <HotelItem
+          _id={hotel._id}
+          name={hotel.name}
+          price={hotel.price}
+          rate={hotel.rate}
+          image={hotel.image}
+        />
       )}
       <div>{Tours}</div>
     </div>
