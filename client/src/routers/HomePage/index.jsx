@@ -4,18 +4,21 @@ import { CityStore, TotalStore } from '../../stores';
 import TicketList from '../../components/TicketList';
 import CityList from '../../components/CityList';
 import Main from '../../components/Main';
+import { IterStore } from '../../stores';
 
 const HomePage = ({ match, history, location }) => {
   return (
     <div>
-      <CityStore>
-        <Link to="/plan/111">Plan</Link>
-        <TicketList />
-        <CityList />
-        <TotalStore>
-          <Main />
-        </TotalStore>
-      </CityStore>
+      <IterStore>
+        <CityStore>
+          <Link to="/plan/111">Plan</Link>
+          <TicketList />
+          <CityList />
+          <TotalStore>
+            <Main />
+          </TotalStore>
+        </CityStore>
+      </IterStore>
     </div>
   );
 };
