@@ -4,10 +4,11 @@ import PropTypes from 'prop-types';
 import { CityContext, IterContext } from './../../stores';
 
 const ItemBody = styled.li`
-  margin: 2em 2em;
+  margin: 2em 2em 0.6em 2em;
   padding: 1em 1.6em;
   font-size: 24px;
   color: white;
+  cursor: pointer;
 `;
 const Type = styled.div``;
 

@@ -9,6 +9,7 @@ const ItemBody = Styled.li`
   border: solid 0.5px white;
   border-radius: 3em;
   color: white;
+  cursor: pointer;
 `;
 
 const CityItem = ({ name, airport }) => {
