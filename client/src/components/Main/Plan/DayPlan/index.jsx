@@ -7,11 +7,18 @@ import HotelPlan from './HotelPlan';
 
 const DayContainer = styles.div`
   display: flex;
+  flex-direction: column;
+  cursor: pointer;
 `;
 
 const Day = styles.h2`
   font-size: 1.5em;
   color: #2c3e50;
+`;
+
+const List = styles.div`
+  display: flex;
+
 `;
 
 const DayPlan = ({ index, hotel, tours }) => {
@@ -60,17 +67,19 @@ const DayPlan = ({ index, hotel, tours }) => {
   return (
     <DayContainer onClick={selectDay}>
       <Day>Day {index}</Day>
-      {Object.keys(hotel).length > 0 && (
-        <HotelPlan
-          _id={hotel._id}
-          name={hotel.name}
-          price={hotel.price}
-          rate={hotel.rate}
-          image={hotel.image}
-          index={index}
-        />
-      )}
-      <div>{Tours}</div>
+      <List>
+        {Object.keys(hotel).length > 0 && (
+          <HotelPlan
+            _id={hotel._id}
+            name={hotel.name}
+            price={hotel.price}
+            rate={hotel.rate}
+            image={hotel.image}
+            index={index}
+          />
+        )}
+        <div>{Tours}</div>
+      </List>
     </DayContainer>
   );
 };

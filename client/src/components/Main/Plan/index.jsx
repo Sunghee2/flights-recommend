@@ -17,6 +17,14 @@ const Title = styles.h2`
   margin: .6em;
 `;
 
+const Container = styles.div`
+  background: rgba(255,255,255,0.5);
+  height: 100%;
+  margin-bottom: 1em;
+  border-radius: .6em;
+  padding: .6em;
+`;
+
 const Plan = _ => {
   console.log('plan');
   const { days } = useContext(IterContext);
@@ -28,9 +36,11 @@ const Plan = _ => {
   return (
     <Section>
       <Title>일정</Title>
-      {days.map(({ index, hotel, tours }) => (
-        <DayPlan key={index} index={index} hotel={hotel} tours={tours} />
-      ))}
+      <Container>
+        {days.map(({ index, hotel, tours }) => (
+          <DayPlan key={index} index={index} hotel={hotel} tours={tours} />
+        ))}
+      </Container>
     </Section>
   );
 };

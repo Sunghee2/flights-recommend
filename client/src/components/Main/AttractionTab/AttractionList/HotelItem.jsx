@@ -10,6 +10,7 @@ const Container = styles.div`
   justifyContent: between-space;
   padding: 1em;
   margin-bottom: 1em;
+  cursor: pointer;
 `;
 const Info = styles.div`
 `;

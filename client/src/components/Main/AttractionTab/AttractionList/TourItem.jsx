@@ -10,6 +10,7 @@ background: rgba(255,255,255,0.5);
   justifyContent: between-space;
   padding: 1em;
   margin-bottom: 1em;
+  cursor: pointer;
 `;
 const Info = styles.div`
 `;
