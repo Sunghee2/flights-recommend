@@ -8,14 +8,12 @@ const DayPlan = ({ index, hotel, tours }) => {
   const { currentHotel, currentTour } = useContext(TotalContext);
   const { setDays } = useContext(IterContext);
   const Tours = tours.map(({ _id, name, price, rank, image }) => (
-    <TourItem key={_id} name={name} price={price} rank={rank} image={image} />
+    <TourItem key={_id} _id={_id} name={name} price={price} rank={rank} image={image} />
   ));
   console.log('DayPlan');
   const selectDay = useCallback(() => {
     console.log('select day');
-    console.log(currentHotel);
     setDays(prev => {
-      const length = prev.length;
       if (Object.keys(currentHotel).length > 0) {
         return prev.map(day => {
           if (day.index === index) {

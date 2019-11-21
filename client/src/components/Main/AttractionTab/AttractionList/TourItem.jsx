@@ -12,7 +12,7 @@ const TourItem = ({ _id, name, price, rank, image }) => {
         background-size: contain;
     `;
   const selectTour = useCallback(() => {
-    setTour({ _id, name, price, rate, image });
+    setTour({ _id, name, price, rank, image });
   });
 
   return (
