@@ -2,7 +2,7 @@ import React from 'react';
 import styles from 'styled-components';
 import PropTypes from 'prop-types';
 
-const TourItem = ({ name, price, rank, image }) => {
+const TourItem = ({ _id, name, price, rank, image }) => {
   const Thumbnail = styles.div`
         background-image: url(${image});
         color: white;
@@ -20,6 +20,7 @@ const TourItem = ({ name, price, rank, image }) => {
 };
 
 TourItem.propTypes = {
+  _id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   rank: PropTypes.number.isRequired,
