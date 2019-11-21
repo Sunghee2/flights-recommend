@@ -8,10 +8,9 @@ import { IterStore } from '../../stores';
 
 const HomePage = ({ match, history, location }) => {
   return (
-    <div>
+    <>
       <IterStore>
         <CityStore>
-          <Link to="/plan/111">Plan</Link>
           <TicketList />
           <CityList />
           <TotalStore>
@@ -19,7 +18,7 @@ const HomePage = ({ match, history, location }) => {
           </TotalStore>
         </CityStore>
       </IterStore>
-    </div>
+    </>
   );
 };
 
