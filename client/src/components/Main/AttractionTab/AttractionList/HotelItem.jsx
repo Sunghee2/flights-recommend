@@ -3,15 +3,6 @@ import styles from 'styled-components';
 import PropTypes from 'prop-types';
 import { TotalContext } from './../../../../stores';
 
-const Container = styles.div`
-  background: rgba(255,255,255,0.5);
-  border-radius: .8em;
-  display: flex;
-  justifyContent: between-space;
-  padding: 1em;
-  margin-bottom: 1em;
-  cursor: pointer;
-`;
 const Info = styles.div`
 `;
 
@@ -36,7 +27,20 @@ const Thumbnail = styles.img`
   height: 4.1em;
 `;
 
-const HotelItem = ({ _id, name, price, rate, image }) => {
+const HotelItem = ({ _id, name, price, rate, image, selected }) => {
+  const Container = styles.div`
+    background: rgba(255,255,255,${selected ? 0.8 : 0.5});
+    border-radius: .8em;
+    display: flex;
+    justifyContent: between-space;
+    padding: 1em;
+    margin-bottom: 1em;
+    cursor: pointer;
+  
+    &:hover {
+      background-color:  rgba(255,255,255,0.8);;
+    }
+  `;
   const { setHotel } = useContext(TotalContext);
 
   const selectHotel = useCallback(() => {
@@ -65,6 +69,7 @@ HotelItem.propTypes = {
   price: PropTypes.number.isRequired,
   rate: PropTypes.number.isRequired,
   image: PropTypes.string.isRequired,
+  selected: PropTypes.bool.isRequired,
 };
 
 export default HotelItem;

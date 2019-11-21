@@ -3,15 +3,6 @@ import styles from 'styled-components';
 import PropTypes from 'prop-types';
 import { TotalContext } from './../../../../stores';
 
-const Container = styles.div`
-background: rgba(255,255,255,0.5);
-  border-radius: .8em;
-  display: flex;
-  justifyContent: between-space;
-  padding: 1em;
-  margin-bottom: 1em;
-  cursor: pointer;
-`;
 const Info = styles.div`
 `;
 
@@ -32,8 +23,21 @@ const Thumbnail = styles.img`
   height: 4.1em;
 `;
 
-const TourItem = ({ _id, name, price, rank, image }) => {
+const TourItem = ({ _id, name, price, rank, image, selected }) => {
   const { setTour } = useContext(TotalContext);
+  const Container = styles.div`
+  background: rgba(255,255,255,${selected ? 0.8 : 0.5});
+    border-radius: .8em;
+    display: flex;
+    justifyContent: between-space;
+    padding: 1em;
+    margin-bottom: 1em;
+    cursor: pointer;
+
+    &:hover {
+      background-color:  rgba(255,255,255,0.8);;
+    }
+  `;
 
   const selectTour = useCallback(() => {
     console.log('현재 투어 변경');
@@ -58,6 +62,7 @@ TourItem.propTypes = {
   price: PropTypes.number.isRequired,
   rank: PropTypes.number.isRequired,
   image: PropTypes.string.isRequired,
+  selected: PropTypes.bool.isRequired,
 };
 
 export default TourItem;
