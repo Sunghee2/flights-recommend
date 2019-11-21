@@ -2,10 +2,7 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import Title from '../../components/Title';
 
-const Home = ({ match, history, location }) => {
-  console.log(match);
-  console.log(history);
-  console.log(location);
+const HomePage = ({ match, history, location }) => {
   return (
     <div>
       <Link to="/plan/111">Plan</Link>
@@ -14,4 +11,4 @@ const Home = ({ match, history, location }) => {
   );
 };
 
-export default Home;
+export default HomePage;

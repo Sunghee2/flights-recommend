@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import Title from '../../components/Title';
 
-const Plan = ({ history }) => {
+const PlanPage = ({ history }) => {
   return (
     <div>
       <a onClick={history.goBack}>Previous Page</a>
@@ -12,4 +12,4 @@ const Plan = ({ history }) => {
   );
 };
 
-export default Plan;
+export default PlanPage;
