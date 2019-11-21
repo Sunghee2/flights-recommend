@@ -5,6 +5,7 @@ import Plan from './Plan';
 
 const Container = styles.main`
   display: flex;
+  margin: 0 1em;
 `;
 
 const Main = _ => {
