@@ -4,15 +4,18 @@ export default `
     hotel: Hotel!
     tours: [Tour]!
   }
- 
+
   type Iter {
-    day: [Day]!
+    key: String!
+    days: [Day]!
   }
  
-  type Mutation {
-    post(iter: Iter!): String!
+  type Ticket {
+    tripType: String!
+    _id: String!
+    cities: [City]!
   }
- 
+
   type City {
     name: String!
     airport: String!
@@ -35,10 +38,7 @@ export default `
   }
  
   type Query {
-    tickets: [City]!
-    recommand_hotel(airport: String!): [Hotel]!
-    recommand_tour(airport: String!): [Tour]!
-    iter: Iter!
+    tickets: [Ticket]!
   }
 `;
  
