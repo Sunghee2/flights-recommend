@@ -1,14 +1,43 @@
-import React from 'react';
+import React, { useCallback, useContext } from 'react';
 import PropTypes from 'prop-types';
 import HotelItem from './../../AttractionTab/AttractionList/HotelItem';
 import TourItem from './../../AttractionTab/AttractionList/TourItem';
+import { TotalContext, IterContext } from './../../../../stores';
 
 const DayPlan = ({ index, hotel, tours }) => {
+  const { currentHotel, currentTour } = useContext(TotalContext);
+  const { setDays } = useContext(IterContext);
   const Tours = tours.map(({ _id, name, price, rank, image }) => (
     <TourItem key={_id} name={name} price={price} rank={rank} image={image} />
   ));
+
+  const selectDay = useCallback(() => {
+    setDays(prev => {
+      const length = prev.length;
+      switch (true) {
+        case currentHotel:
+          return [
+            ...prev.slice(0, index),
+            { ...prev, hotel: currentHotel },
+            ...prev.slice(index + 1, length),
+          ];
+        case currentTour:
+          return prev.map(day => {
+            if (day.index === index) {
+              const { tours } = day;
+              if (tours.every(tour => tour._id !== currentTour._id)) {
+                return { ...day, tours: [...tours, currentTour] };
+              }
+            }
+            return day;
+          });
+        default:
+          return prev;
+      }
+    });
+  });
   return (
-    <div>
+    <div onClick={selectDay}>
       {hotel && (
         <HotelItem name={hotel.name} price={hotel.price} rate={hotel.rate} image={hotel.image} />
       )}
