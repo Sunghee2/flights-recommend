@@ -39,7 +39,7 @@ const Thumbnail = styles.img`
   color: white;
   background-repeat: no-repeat;
   background-size: contain;
-  height: 6em;
+  height: 8em;
 `;
 const TourPlan = ({ index, _id, name, price, rank, image }) => {
   const { setDays } = useContext(IterContext);
