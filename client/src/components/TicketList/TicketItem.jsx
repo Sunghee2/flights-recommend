@@ -6,9 +6,10 @@ import { CityContext } from './../../stores';
 const Type = styled.div``;
 
 const TicketItem = ({ tripType, cities }) => {
-  const { setCityList } = useContext(CityContext);
+  const { setCityList, setCity } = useContext(CityContext);
   const selectTicket = useCallback(_ => {
     setCityList(cities);
+    setCity(cities[0]);
   });
   return (
     <div onClick={selectTicket}>
