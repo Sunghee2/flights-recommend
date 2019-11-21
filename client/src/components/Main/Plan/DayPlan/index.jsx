@@ -18,7 +18,7 @@ const Day = styles.h2`
 
 const List = styles.div`
   display: flex;
-
+  padding: .4em 0;
 `;
 
 const DayPlan = ({ index, hotel, tours }) => {
@@ -78,7 +78,7 @@ const DayPlan = ({ index, hotel, tours }) => {
             index={index}
           />
         )}
-        <div>{Tours}</div>
+        {Tours}
       </List>
     </DayContainer>
   );

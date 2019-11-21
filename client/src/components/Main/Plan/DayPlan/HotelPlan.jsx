@@ -3,15 +3,51 @@ import styles from 'styled-components';
 import PropTypes from 'prop-types';
 import { IterContext, TotalContext } from '../../../../stores';
 
+const Card = styles.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const Info = styles.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: .3em;
+  background: rgba(255,255,255, 0.7);
+`;
+
+const Name = styles.div`
+  color: #2c3e50;
+  font-size: 1.2em;
+`;
+
+const Price = styles.div`
+  font-size: 1.1em;
+  margin: 0.4em 0;
+  color: #fe5d41;
+`;
+const Rate = styles.div`
+  color: #666;
+`;
+
+const Star = styles.span`
+color: #fe5d41;
+`;
+
+const Score = styles.div`
+  font-size: 0.8em;
+`;
+
+const Thumbnail = styles.img`
+  color: white;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 6em;
+`;
+
 const HotelPlan = ({ index, _id, name, price, rate, image }) => {
   const { setDays } = useContext(IterContext);
   const { currentHotel, currentTour } = useContext(TotalContext);
-  const Thumbnail = styles.div`
-        background-image: url(${image});
-        color: white;
-        background-repeat: no-repeat;
-        background-size: contain;
-    `;
 
   const deleteHotel = useCallback(() => {
     if (Object.keys(currentHotel).length === 0 && Object.keys(currentTour).length === 0) {
@@ -28,11 +64,19 @@ const HotelPlan = ({ index, _id, name, price, rate, image }) => {
   });
 
   return (
-    <Thumbnail onClick={deleteHotel}>
-      <div>{name}</div>
-      <div>{price}</div>
-      <div>{rate}</div>
-    </Thumbnail>
+    <Card onClick={deleteHotel}>
+      <Thumbnail src={image} alt={name} />
+      <Info>
+        <Name>{name}</Name>
+        <Score>
+          <Price>\{price}</Price>
+          <Rate>
+            <Star>★</Star>
+            {rate}
+          </Rate>
+        </Score>
+      </Info>
+    </Card>
   );
 };
 
