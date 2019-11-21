@@ -8,8 +8,7 @@ const Home = ({ match, history, location }) => {
   console.log(location);
   return (
     <div>
-      <Link to="/page1">Page 1</Link>
-      <Link to="/page2">Page 2</Link>
+      <Link to="/plan/111">Plan</Link>
       <Title label="Hello World!" />
     </div>
   );
