@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useCallback, useContext } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { CityContext } from './../../stores';
@@ -7,9 +7,9 @@ const Type = styled.div``;
 
 const TicketItem = ({ tripType, cities }) => {
   const { setCityList } = useContext(CityContext);
-  const selectTicket = _ => {
+  const selectTicket = useCallback(_ => {
     setCityList(cities);
-  };
+  });
   return (
     <div onClick={selectTicket}>
       <Type>{tripType}</Type>
