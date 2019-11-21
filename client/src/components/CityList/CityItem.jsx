@@ -14,7 +14,7 @@ const CityItem = ({ name, airport }) => {
     setCity({ name, airport });
   });
 
-  return <ItemBody onClick={changeCity}>{props.name}</ItemBody>;
+  return <ItemBody onClick={changeCity}>{name}</ItemBody>;
 };
 
 CityItem.propTypes = {
