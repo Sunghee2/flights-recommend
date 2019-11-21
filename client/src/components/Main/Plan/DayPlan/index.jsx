@@ -13,6 +13,8 @@ const DayPlan = ({ index, hotel, tours }) => {
   console.log('DayPlan');
   const selectDay = useCallback(() => {
     console.log('select day');
+    console.log(currentHotel);
+    console.log(currentTour);
     setDays(prev => {
       if (Object.keys(currentHotel).length > 0) {
         return prev.map(day => {

@@ -13,6 +13,7 @@ const HotelItem = ({ _id, name, price, rate, image }) => {
     `;
 
   const selectHotel = useCallback(() => {
+    console.log('현재 호텔 변경');
     setHotel({ _id, name, price, rate, image });
   });
 

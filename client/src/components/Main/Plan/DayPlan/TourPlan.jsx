@@ -1,23 +1,21 @@
 import React, { useContext, useCallback } from 'react';
 import styles from 'styled-components';
 import PropTypes from 'prop-types';
-import { TotalContext } from './../../../../stores';
+import { TotalContext } from '../../../../stores';
 
-const TourItem = ({ _id, name, price, rank, image }) => {
-  const { setTour } = useContext(TotalContext);
+const TourPlan = ({ _id, name, price, rank, image }) => {
   const Thumbnail = styles.div`
         background-image: url(${image});
         color: white;
         background-repeat: no-repeat;
         background-size: contain;
     `;
-  const selectTour = useCallback(() => {
-    console.log('현재 투어 변경');
-    setTour({ _id, name, price, rank, image });
+  const deleteTour = useCallback(() => {
+    console.log('현재 투어 삭제');
   });
 
   return (
-    <Thumbnail onClick={selectTour}>
+    <Thumbnail onClick={deleteTour}>
       <div>{name}</div>
       <div>{price}</div>
       <div>{rank}</div>
@@ -25,7 +23,7 @@ const TourItem = ({ _id, name, price, rank, image }) => {
   );
 };
 
-TourItem.propTypes = {
+TourPlan.propTypes = {
   _id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
@@ -33,4 +31,4 @@ TourItem.propTypes = {
   image: PropTypes.string.isRequired,
 };
 
-export default TourItem;
+export default TourPlan;
