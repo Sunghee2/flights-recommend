@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { TotalContext } from './../../../../stores';
 
 const Container = styles.div`
-  background: white;
+  background: rgba(255,255,255,0.5);
   border-radius: .8em;
   display: flex;
   justifyContent: between-space;
