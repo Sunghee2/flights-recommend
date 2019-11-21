@@ -1,6 +1,6 @@
 import React from 'react';
 
-const HotelPlan = _ => {
+const TourPlan = _ => {
   return (
     <div>
       <div></div>
@@ -8,4 +8,4 @@ const HotelPlan = _ => {
   );
 };
 
-export default HotelPlan;
+export default TourPlan;
