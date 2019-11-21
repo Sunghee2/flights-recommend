@@ -1,9 +1,11 @@
 import React, { useContext, useCallback } from 'react';
 import styles from 'styled-components';
 import PropTypes from 'prop-types';
-import { TotalContext } from '../../../../stores';
+import { IterContext, TotalContext } from '../../../../stores';
 
-const TourPlan = ({ _id, name, price, rank, image }) => {
+const TourPlan = ({ index, _id, name, price, rank, image }) => {
+  const { setDays } = useContext(IterContext);
+  const { currentHotel, currentTour } = useContext(TotalContext);
   const Thumbnail = styles.div`
         background-image: url(${image});
         color: white;
@@ -11,7 +13,18 @@ const TourPlan = ({ _id, name, price, rank, image }) => {
         background-size: contain;
     `;
   const deleteTour = useCallback(() => {
-    console.log('현재 투어 삭제');
+    if (Object.keys(currentHotel).length === 0 && Object.keys(currentTour).length === 0) {
+      console.log('현재 투어 삭제');
+      setDays(prev =>
+        prev.map(day => {
+          if (day.index === index) {
+            const { tours } = day;
+            return Object.assign(day, { tours: tours.filter(tour => tour._id !== _id) });
+          }
+          return day;
+        }),
+      );
+    }
   });
 
   return (
@@ -24,6 +37,7 @@ const TourPlan = ({ _id, name, price, rank, image }) => {
 };
 
 TourPlan.propTypes = {
+  index: PropTypes.number.isRequired,
   _id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,

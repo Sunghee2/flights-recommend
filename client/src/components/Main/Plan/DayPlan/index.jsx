@@ -1,14 +1,22 @@
 import React, { useCallback, useContext } from 'react';
 import PropTypes from 'prop-types';
-import HotelItem from './../../AttractionTab/AttractionList/HotelItem';
-import TourItem from './../../AttractionTab/AttractionList/TourItem';
 import { TotalContext, IterContext } from './../../../../stores';
+import TourPlan from './TourPlan';
+import HotelPlan from './HotelPlan';
 
 const DayPlan = ({ index, hotel, tours }) => {
-  const { currentHotel, currentTour } = useContext(TotalContext);
+  const { currentHotel, currentTour, setHotel, setTour } = useContext(TotalContext);
   const { setDays } = useContext(IterContext);
   const Tours = tours.map(({ _id, name, price, rank, image }) => (
-    <TourItem key={_id} _id={_id} name={name} price={price} rank={rank} image={image} />
+    <TourPlan
+      key={_id}
+      index={index}
+      _id={_id}
+      name={name}
+      price={price}
+      rank={rank}
+      image={image}
+    />
   ));
   console.log('DayPlan');
   const selectDay = useCallback(() => {
@@ -36,17 +44,20 @@ const DayPlan = ({ index, hotel, tours }) => {
       }
       return prev;
     });
+    setHotel({});
+    setTour({});
   });
   return (
     <div onClick={selectDay}>
       <h2>Day {index}</h2>
       {Object.keys(hotel).length > 0 && (
-        <HotelItem
+        <HotelPlan
           _id={hotel._id}
           name={hotel.name}
           price={hotel.price}
           rate={hotel.rate}
           image={hotel.image}
+          index={index}
         />
       )}
       <div>{Tours}</div>
