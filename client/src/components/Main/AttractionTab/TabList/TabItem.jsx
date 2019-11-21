@@ -9,6 +9,7 @@ const TabItem = props => {
   console.log('TabItem');
   const changeTab = useCallback(() => {
     props.setCurrentTab(props.name);
+    props.setTotal({});
   });
 
   return <TabBody onClick={changeTab}>{props.name}</TabBody>;
@@ -18,6 +19,7 @@ TabItem.propTypes = {
   name: PropTypes.string.isRequired,
   active: PropTypes.bool.isRequired,
   setCurrentTab: PropTypes.func.isRequired,
+  setTotal: PropTypes.func.isRequired,
 };
 
 export default TabItem;
