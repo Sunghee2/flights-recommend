@@ -8,6 +8,9 @@ import TourItem from './TourItem';
 import Styled from 'styled-components';
 
 const ListBody = Styled.ul`
+  display: flex;
+  flex: 1;
+  flex-direction: column;
 `;
 
 const AttractionList = ({ currentTab }) => {
