@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useLazyQuery } from '@apollo/react-hooks';
 import { GET_RECOMMAND } from './query';
-import { CityContext } from './../../../../stores';
+import { CityContext } from '../../../../stores';
 
 const AttractionList = _ => {
   const [getRecommand, { called, loading, error, data }] = useLazyQuery(GET_RECOMMAND, {
