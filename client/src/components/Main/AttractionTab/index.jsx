@@ -12,7 +12,7 @@ const AttractionTab = _ => {
   return (
     <Body>
       <TabList currentTab={currentTab} setCurrentTab={setCurrentTab} />
-      <AttractionList currentTab="hotel" />
+      <AttractionList currentTab={currentTab} />
     </Body>
   );
 };
