@@ -12,7 +12,13 @@ const TicketItem = ({ length, tripType, cities }) => {
   const selectTicket = useCallback(_ => {
     setCityList(cities);
     setCity(cities[0]);
-    setDays(new Array(length).fill(0));
+    setDays(
+      new Array(length).fill(0).map((_, index) => ({
+        index: index + 1,
+        hotel: {},
+        tours: [],
+      })),
+    );
   });
   return (
     <div onClick={selectTicket}>
