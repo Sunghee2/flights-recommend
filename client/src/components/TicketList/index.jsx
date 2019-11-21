@@ -6,6 +6,7 @@ import TicketItem from './TicketItem';
 
 const ListBody = Styled.ul`
   display: flex;
+  justify-content: center;
 `;
 
 const TicketList = _ => {
