@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const localSchema = new mongoose.Schema({
+const ticketSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true,
@@ -17,10 +17,9 @@ const localSchema = new mongoose.Schema({
     type: Number,
     required: false,
   }],
-  image: [{
+  image: {
     type: String,
-    required: false,
-  }],
+  },
 });
 
-export default mongoose.model('Local', localSchema);
+export default mongoose.model('Ticket', ticketSchema);
