@@ -12,28 +12,29 @@ const DayPlan = ({ index, hotel, tours }) => {
   ));
   console.log('DayPlan');
   const selectDay = useCallback(() => {
+    console.log('select day');
+    console.log(currentHotel);
     setDays(prev => {
       const length = prev.length;
-      switch (true) {
-        case currentHotel:
-          return [
-            ...prev.slice(0, index),
-            { ...prev, hotel: currentHotel },
-            ...prev.slice(index + 1, length),
-          ];
-        case currentTour:
-          return prev.map(day => {
-            if (day.index === index) {
-              const { tours } = day;
-              if (tours.every(tour => tour._id !== currentTour._id)) {
-                return { ...day, tours: [...tours, currentTour] };
-              }
+      if (Object.keys(currentHotel).length > 0) {
+        return prev.map(day => {
+          if (day.index === index) {
+            return { ...day, hotel: currentHotel };
+          }
+          return day;
+        });
+      } else if (Object.keys(currentTour).length > 0) {
+        return prev.map(day => {
+          if (day.index === index) {
+            const { tours } = day;
+            if (tours.every(tour => tour._id !== currentTour._id)) {
+              return { ...day, tours: [...tours, currentTour] };
             }
-            return day;
-          });
-        default:
-          return prev;
+          }
+          return day;
+        });
       }
+      return prev;
     });
   });
   return (

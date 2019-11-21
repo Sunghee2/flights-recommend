@@ -6,7 +6,10 @@ const Plan = _ => {
   console.log('plan');
   const { days } = useContext(IterContext);
 
-  console.log(days);
+  useEffect(() => {
+    console.log(days);
+  }, [days]);
+
   return (
     <div>
       <div>일정</div>
