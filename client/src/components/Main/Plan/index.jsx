@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useCallback } from 'react';
 import styles from 'styled-components';
 import { IterContext } from '../../../stores';
 import DayPlan from './DayPlan';
@@ -10,11 +10,26 @@ const Section = styles.section`
   padding: .4em;
 `;
 
+const Head = styles.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
 const Title = styles.h2`
   color: white;
   font-size: 1.1em;
   padding: .4em;
   margin: .6em;
+`;
+
+const Send = styles.button`
+background: transparent;
+border: transparent;
+font-style: bold;
+font-size: 1.1em;
+color: white;
+cursor: pointer;
+outline: none;
 `;
 
 const Container = styles.div`
@@ -29,13 +44,17 @@ const Plan = _ => {
   console.log('plan');
   const { days } = useContext(IterContext);
 
+  const sendPlan = useCallback(() => {});
   useEffect(() => {
     console.log(days);
   }, [days]);
 
   return (
     <Section>
-      <Title>일정</Title>
+      <Head>
+        <Title>일정</Title>
+        <Send onClick={sendPlan}>보내기</Send>
+      </Head>
       <Container>
         {days.map(({ index, hotel, tours }) => (
           <DayPlan key={index} index={index} hotel={hotel} tours={tours} />
