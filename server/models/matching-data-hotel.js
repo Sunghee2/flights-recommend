@@ -11,4 +11,4 @@ const matchingDataHotelSchema = new mongoose.Schema({
   },
 });
 
-export default mongoose.model('MachingDataHotel', matchingDataHotelSchema);
+export default mongoose.model('MatchingDataHotel', matchingDataHotelSchema);

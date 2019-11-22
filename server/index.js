@@ -5,7 +5,6 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 
 import schema from './graphql';
-import User from './models/sample';
 
 dotenv.config();
 const app = express();
@@ -44,8 +43,6 @@ mongoose.connect(DB_URI, {
 
 // atlas 연결 확인 test - sample data
 app.get('/', async (req, res) => {
-  const users = await User.find();
-  res.json(users);
 });
 
 app.use(

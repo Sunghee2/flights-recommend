@@ -11,4 +11,4 @@ const matchingDataLocalSchema = new mongoose.Schema({
   },
 });
 
-export default mongoose.model('MachingDataLocal', matchingDataLocalSchema);
+export default mongoose.model('MatchingDataLocal', matchingDataLocalSchema);
