@@ -1,5 +1,7 @@
 import React, { useEffect, useContext, useCallback } from 'react';
+import { useMutation } from '@apollo/react-hooks';
 import styles from 'styled-components';
+import CREATE_PLAN from './query';
 import { IterContext } from '../../../stores';
 import DayPlan from './DayPlan';
 
@@ -41,10 +43,13 @@ const Container = styles.div`
 `;
 
 const Plan = _ => {
+  const [createPlan, { data }] = useMutation(CREATE_PLAN);
   console.log('plan');
   const { days } = useContext(IterContext);
 
-  const sendPlan = useCallback(() => {});
+  const sendPlan = useCallback(() => {
+    createPlan({ variables: { plan: { days } } });
+  });
   useEffect(() => {
     console.log(days);
   }, [days]);
