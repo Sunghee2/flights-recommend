@@ -16,7 +16,6 @@ const ItemDate = Styled.div`
 `;
 
 const CityList = props => {
-  console.log('CityList');
   const { city, cityList } = useContext(CityContext);
   const currentCity = city.name;
   console.log(cityList);
