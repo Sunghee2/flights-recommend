@@ -12,6 +12,6 @@ export default `
 
   type City {
     name: String!
-    code: String!
+    airport: String!
   }
 `;

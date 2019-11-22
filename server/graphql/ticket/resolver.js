@@ -1,10 +1,10 @@
 import Flight from '../../models/flight';
 
-function checkUnique(arr, code) {
+function checkUnique(arr, airport) {
   const {
     length,
   } = arr;
-  if (length > 0 && arr[length - 1].code === code) return false;
+  if (length > 0 && arr[length - 1].airport === airport) return false;
   return true;
 }
 
@@ -18,10 +18,10 @@ function calculateTripLength(arr) {
   return tripLength;
 }
 
-function createCityObject(name, code) {
+function createCityObject(name, airport) {
   const data = {};
   data.name = name;
-  data.code = code;
+  data.airport = airport;
   return data;
 }
 
