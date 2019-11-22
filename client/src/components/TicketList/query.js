@@ -2,12 +2,14 @@ import gql from 'graphql-tag';
 
 export default gql`
   query {
-    tripType
-    _id
-    length
-    cities {
-      name
-      airport
+    tickets {
+      tripType
+      _id
+      tripLength
+      cities {
+        name
+        airport
+      }
     }
   }
 `;
