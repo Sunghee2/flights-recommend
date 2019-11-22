@@ -5,50 +5,40 @@ export default `
     tours: [Tour]!
   }
 
-  input InputHotel {
-    name: String!
-    price: Int!
-    rate: Int!
-    image: String!
-    _id: String!
+  input TourInput {
+    type: String!
+    id: ID!
   }
 
-  input InputTour {
-    name: String!
-    price: Int!
-    rank: Float!
-    image: String!
-    _id: String!
+  input DayInput {
+    day: Int!
+    hotel: ID!
+    tours: [TourInput]!
   }
 
-  input InputDay {
-    index: Int!
-    hotel: InputHotel!
-    tours: [InputTour]!
+  input PlanInput {
+    days: [DayInput]!
   }
 
-  input InputIter {
-    days: InputDay!
-  }
-
-  type Iter {
+  type Plan {
     key: String!
     days: [Day]!
   }
 
   type Mutation {
-    post(iter: InputIter!): String!
+    createPlan(plan: PlanInput!): String!
   }
 
   type Ticket {
+    _id: ID!
     tripType: String!
-    _id: String!
+    tripLength: Int!
     cities: [City]!
   }
 
   type City {
     name: String!
-    airport: String!
+    code: String!
   }
 
   type Hotel {
@@ -60,9 +50,9 @@ export default `
   }
 
   type Tour {
-    name: String!
+    title: String!
     price: Int!
-    rank: Int!
+    rank: Float!
     image: String!
     _id: String!
   }
@@ -71,9 +61,6 @@ export default `
     tickets: [Ticket]!
     recommend_hotel(airport: String!): [Hotel]!
     recommend_tour(airport: String!): [Tour]!
-    iter(key: String!): Iter!
-  }
+    plan(id: ID!): Plan!
+  } 
 `;
- 
- 
- 
