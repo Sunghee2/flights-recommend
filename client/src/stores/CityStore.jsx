@@ -1,24 +1,7 @@
 import React, { useState } from 'react';
 
 const defaultCity = {
-  cityList: [
-    {
-      name: '인천',
-      airport: 'INC',
-    },
-    {
-      name: '바르셀로나',
-      airport: 'BC',
-    },
-    {
-      name: '파리',
-      airport: 'PAR',
-    },
-    {
-      name: '뉴욕',
-      airport: 'NY',
-    },
-  ],
+  cityList: [],
   city: {
     name: '',
     airport: '',
