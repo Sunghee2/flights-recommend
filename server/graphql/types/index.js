@@ -62,7 +62,7 @@ export default `
   type Tour {
     name: String!
     price: Int!
-    rank: Float!
+    rank: Int!
     image: String!
     _id: String!
   }
