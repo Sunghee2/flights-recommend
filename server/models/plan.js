@@ -4,8 +4,8 @@ const {
   Schema,
 } = mongoose;
 const planSchema = new Schema({
-  day: [{
-    date: {
+  days: [{
+    day: {
       type: Number,
       required: true,
     },
@@ -13,10 +13,15 @@ const planSchema = new Schema({
       type: Schema.Types.ObjectId,
       ref: 'Hotel',
     },
-    tour: [{
-      type: Schema.Types.ObjectId,
-      ref: 'Tour',
-    }],
+    tours: [
+      new Schema({
+        type: {
+          type: String,
+          enum: ['ticket', 'local'],
+        },
+        id: String,
+      }),
+    ],
   }],
 });
 
