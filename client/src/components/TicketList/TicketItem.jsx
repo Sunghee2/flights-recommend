@@ -1,19 +1,36 @@
 import React, { useCallback, useContext } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { CityContext } from './../../stores';
+import { CityContext, IterContext } from './../../stores';
 
+const ItemBody = styled.li`
+  margin: 2em 2em 0.6em 2em;
+  padding: 1em 1.6em;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+`;
 const Type = styled.div``;
 
-const TicketItem = ({ tripType, cities }) => {
-  const { setCityList } = useContext(CityContext);
+const TicketItem = ({ length, tripType, cities }) => {
+  const { setCityList, setCity } = useContext(CityContext);
+  const { setDays } = useContext(IterContext);
+
   const selectTicket = useCallback(_ => {
     setCityList(cities);
+    setCity(cities[0]);
+    setDays(
+      new Array(length).fill(0).map((_, index) => ({
+        index: index + 1,
+        hotel: {},
+        tours: [],
+      })),
+    );
   });
   return (
-    <div onClick={selectTicket}>
+    <ItemBody onClick={selectTicket}>
       <Type>{tripType}</Type>
-    </div>
+    </ItemBody>
   );
 };
 

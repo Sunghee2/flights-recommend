@@ -14,12 +14,8 @@ const Price = styles.div`
   margin: 0.4em 0;
   color: #fe5d41;
 `;
-const Rate = styles.div`
+const Rank = styles.div`
   color: #666;
-`;
-
-const Star = styles.span`
-color: #fe5d41;
 `;
 
 const Thumbnail = styles.img`
@@ -27,49 +23,46 @@ const Thumbnail = styles.img`
   height: 4.1em;
 `;
 
-const HotelItem = ({ _id, name, price, rate, image, selected }) => {
+const TourItem = ({ _id, name, price, rank, image, selected }) => {
+  const { setTour } = useContext(TotalContext);
   const Container = styles.div`
-    background: rgba(255,255,255,${selected ? 0.8 : 0.5});
+  background: rgba(255,255,255,${selected ? 0.8 : 0.5});
     border-radius: .8em;
     display: flex;
     justifyContent: between-space;
     padding: 1em;
     margin-bottom: 1em;
     cursor: pointer;
-  
+
     &:hover {
       background-color:  rgba(255,255,255,0.8);;
     }
   `;
-  const { setHotel } = useContext(TotalContext);
 
-  const selectHotel = useCallback(() => {
-    console.log('현재 호텔 변경');
-    setHotel({ _id, name, price, rate, image });
+  const selectTour = useCallback(() => {
+    console.log('현재 투어 변경');
+    setTour({ _id, name, price, rank, image });
   });
 
   return (
-    <Container onClick={selectHotel}>
+    <Container onClick={selectTour}>
       <Info>
         <Name>{name}</Name>
         <Price>\{price}</Price>
-        <Rate>
-          <Star>★</Star>
-          {rate}
-        </Rate>
+        <Rank>{rank}</Rank>
       </Info>
       <Thumbnail src={image} alt={name} />
     </Container>
   );
 };
 
-HotelItem.propTypes = {
+TourItem.propTypes = {
   _id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
-  rate: PropTypes.number.isRequired,
+  rank: PropTypes.number.isRequired,
   image: PropTypes.string.isRequired,
   selected: PropTypes.bool.isRequired,
 };
 
-export default HotelItem;
+export default TourItem;

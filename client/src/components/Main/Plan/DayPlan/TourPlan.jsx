@@ -6,6 +6,7 @@ import { IterContext, TotalContext } from '../../../../stores';
 const Card = styles.div`
   display: flex;
   flex-direction: column;
+  margin-left: .4em;
 `;
 
 const Info = styles.div`
@@ -26,12 +27,8 @@ const Price = styles.div`
   margin: 0.4em 0;
   color: #fe5d41;
 `;
-const Rate = styles.div`
+const Rank = styles.div`
   color: #666;
-`;
-
-const Star = styles.span`
-color: #fe5d41;
 `;
 
 const Score = styles.div`
@@ -44,18 +41,17 @@ const Thumbnail = styles.img`
   background-size: contain;
   height: 8em;
 `;
-
-const HotelPlan = ({ index, _id, name, price, rate, image }) => {
+const TourPlan = ({ index, _id, name, price, rank, image }) => {
   const { setDays } = useContext(IterContext);
   const { currentHotel, currentTour } = useContext(TotalContext);
-
-  const deleteHotel = useCallback(() => {
+  const deleteTour = useCallback(() => {
     if (Object.keys(currentHotel).length === 0 && Object.keys(currentTour).length === 0) {
-      console.log('현재 호텔 삭제');
+      console.log('현재 투어 삭제');
       setDays(prev =>
         prev.map(day => {
           if (day.index === index) {
-            return Object.assign(day, { hotel: {} });
+            const { tours } = day;
+            return Object.assign(day, { tours: tours.filter(tour => tour._id !== _id) });
           }
           return day;
         }),
@@ -64,29 +60,26 @@ const HotelPlan = ({ index, _id, name, price, rate, image }) => {
   });
 
   return (
-    <Card onClick={deleteHotel}>
+    <Card onClick={deleteTour}>
       <Thumbnail src={image} alt={name} />
       <Info>
         <Name>{name}</Name>
         <Score>
           <Price>\{price}</Price>
-          <Rate>
-            <Star>★</Star>
-            {rate}
-          </Rate>
+          <Rank>{rank}</Rank>
         </Score>
       </Info>
     </Card>
   );
 };
 
-HotelPlan.propTypes = {
+TourPlan.propTypes = {
   index: PropTypes.number.isRequired,
   _id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
-  rate: PropTypes.number.isRequired,
+  rank: PropTypes.number.isRequired,
   image: PropTypes.string.isRequired,
 };
 
-export default HotelPlan;
+export default TourPlan;
