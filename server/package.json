@@ -11,7 +11,7 @@
     "graphql": "^14.5.8",
     "graphql-tools": "^4.0.6",
     "merge-graphql-schemas": "^1.7.3",
-    "mongoose": "^5.7.11"
+    "mongoose": "^5.7.12"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -25,11 +25,13 @@
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-node": "^10.0.0",
     "eslint-plugin-prettier": "^3.1.1",
+    "fs": "0.0.1-security",
     "nodemon": "^1.19.4",
     "prettier": "^1.19.1"
   },
   "scripts": {
-    "start": "nodemon --exec babel-node index.js"
+    "start": "nodemon --exec babel-node index.js",
+    "test": "nodemon --exec babel-node script/index.js"
   },
   "author": "",
   "license": "ISC"
