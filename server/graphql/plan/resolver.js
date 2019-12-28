@@ -4,13 +4,13 @@ import Local from '../../models/local';
 import Hotel from '../../models/hotel';
 
 function createHotelObejct(hotel) {
-  const data = {};
-  data.name = hotel.HotelName;
-  data.price = hotel.MinRateKRW;
-  data.rate = hotel.OverallRating;
-  data.image = 'https://q-cf.bstatic.com/images/hotel/max1024x768/148/148999662.jpg';
-  data._id = hotel._id;
-  return data;
+  return {
+    name: hotel.HotelName,
+    price: hotel.MinRateKRW,
+    rate: hotel.OverallRating,
+    image: 'https://q-cf.bstatic.com/images/hotel/max1024x768/148/148999662.jpg',
+    _id: hotel._id
+  };
 }
 
 function createTourArray(day) {
@@ -46,10 +46,11 @@ export default {
       plan.map((p) => {
         const dayArray = [];
         p.days.map((day) => {
-          const dayObject = {};
-          dayObject.index = day.day;
-          dayObject.hotel = createHotelObejct(day.hotel);
-          dayObject.tours = createTourArray(day);
+          const dayObject = {
+            index: day.day,
+            hotel: createHotelObejct(day.hotel),
+            tours: createTourArray(day),
+          };
           dayArray.push(dayObject);
         });
         planObject.days = dayArray;

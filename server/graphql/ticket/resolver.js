@@ -19,19 +19,19 @@ function calculateTripLength(arr) {
 }
 
 function createCityObject(name, airport) {
-  const data = {};
-  data.name = name;
-  data.airport = airport;
-  return data;
+  return {
+    name,
+    airport
+  };
 }
 
 function createTicketObject(_id, tripType, tripLength, cities) {
-  const data = {};
-  data._id = _id;
-  data.tripType = tripType;
-  data.tripLength = tripLength;
-  data.cities = cities;
-  return data;
+  return {
+    _id,
+    tripType,
+    tripLength,
+    cities,
+  };
 }
 
 export default {
