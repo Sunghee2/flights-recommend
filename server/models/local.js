@@ -8,6 +8,7 @@ const localSchema = new mongoose.Schema({
   cityIds: [{
     type: Number,
     required: true,
+    index: true,
   }],
   rank: {
     type: Number,

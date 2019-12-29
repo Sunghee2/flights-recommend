@@ -8,6 +8,7 @@ const matchingDataHotelSchema = new mongoose.Schema({
   placeId: {
     type: String,
     required: true,
+    index: true,
   },
 });
 

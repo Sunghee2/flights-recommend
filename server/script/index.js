@@ -26,6 +26,7 @@ async function connect(uri, dbName) {
       uri, {
         dbName,
         useUnifiedTopology: true,
+        useCreateIndex: true,
         useNewUrlParser: true,
       },
     );

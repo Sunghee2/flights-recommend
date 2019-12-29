@@ -31,6 +31,7 @@ app.use(
 mongoose.Promise = global.Promise;
 mongoose.connect(DB_URI, {
   dbName: DB_NAME,
+  useCreateIndex: true,
   useUnifiedTopology: true,
   useNewUrlParser: true,
 }, (err) => {
@@ -42,8 +43,7 @@ mongoose.connect(DB_URI, {
 });
 
 // atlas 연결 확인 test - sample data
-app.get('/', async (req, res) => {
-});
+app.get('/', async (req, res) => {});
 
 app.use(
   '/graphql',

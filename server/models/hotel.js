@@ -16,6 +16,7 @@ const hotelSchema = new mongoose.Schema({
   WKPlaceID: {
     type: String,
     required: true,
+    index: true,
   },
   Image: {
     type: String,

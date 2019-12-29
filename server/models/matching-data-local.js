@@ -4,6 +4,7 @@ const matchingDataLocalSchema = new mongoose.Schema({
   LocalId: {
     type: String,
     required: true,
+    index: true,
   },
   Iata: {
     type: String,
