@@ -34,27 +34,43 @@ async function connect(uri, dbName) {
   }
 }
 
-function save(models, json, index) {
-  try {
-    models[index].insertMany(json);
-  } catch (err) {
-    handleError(err);
-  }
+function executeBulk(bulk, models, index) {
+  bulk.execute(err => {
+    if (err) handleError(err);
+
+    bulk = models[index].collection.initializeOrderedBulkOp();
+  });
 }
 
 function readFileAndSave(filenames, models) {
   filenames.forEach((filename, index) => {
     const path = `./script/data/${filename}.log`;
+    var bulk = models[index].collection.initializeOrderedBulkOp();
+    var counter = 0;
 
     const stream = fs
       .createReadStream(path)
       .on('close', () => {
+        if (counter > 0) {
+          executeBulk(bulk, models, index);
+          counter = 0;
+        }
       })
       .pipe(es.split())
       .pipe(
         es.map(line => {
           try {
             const json = JSON.parse(line);
+            bulk.insert(json);
+            counter++;
+
+            if (counter % 300 == 0) {
+              executeBulk(bulk, models, index);
+              counter = 0;
+            }
+          } catch (err) {
+            handleError(err);
+          }
         })
       );
   });
