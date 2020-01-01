@@ -1,4 +1,5 @@
 import fs from 'fs';
+import es from 'event-stream';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
@@ -12,7 +13,7 @@ import Ticket from '../models/ticket';
 dotenv.config();
 const {
   DB_NAME,
-  DB_URI,
+  DB_URI
 } = process.env;
 
 function handleError(err) {
@@ -22,14 +23,12 @@ function handleError(err) {
 
 async function connect(uri, dbName) {
   try {
-    await mongoose.connect(
-      uri, {
-        dbName,
-        useUnifiedTopology: true,
-        useCreateIndex: true,
-        useNewUrlParser: true,
-      },
-    );
+    await mongoose.connect(uri, {
+      dbName,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+      useNewUrlParser: true
+    });
   } catch (err) {
     handleError(err);
   }
@@ -46,18 +45,18 @@ function save(models, json, index) {
 function readFileAndSave(filenames, models) {
   filenames.forEach((filename, index) => {
     const path = `./script/data/${filename}.log`;
-    const textByLine = fs
-      .readFileSync(path)
-      .toString()
-      .split('\n');
-    textByLine.forEach((line) => {
-      try {
-        const json = JSON.parse(line);
-        save(models, json, index);
-      } catch (err) {
-        handleError(err);
-      }
-    });
+
+    const stream = fs
+      .createReadStream(path)
+      .on('close', () => {
+      })
+      .pipe(es.split())
+      .pipe(
+        es.map(line => {
+          try {
+            const json = JSON.parse(line);
+        })
+      );
   });
 }
 
@@ -69,7 +68,7 @@ async function importData() {
     'local',
     'matching_data_hotel',
     'matching_data_local',
-    'tickets',
+    'tickets'
   ];
   const models = [
     Flight,
@@ -77,11 +76,11 @@ async function importData() {
     Local,
     MatchingDataHotel,
     MatchingDataLocal,
-    Ticket,
+    Ticket
   ];
 
   await connect(DB_URI, DB_NAME);
-  db.once('open', async (err) => {
+  db.once('open', async err => {
     if (err) handleError(err);
 
     await readFileAndSave(filenames, models);
