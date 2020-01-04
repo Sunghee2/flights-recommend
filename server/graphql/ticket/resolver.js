@@ -38,9 +38,8 @@ export default {
   Query: {
     tickets: async () => {
       const tickets = await Flight.find({});
-      const ticketArray = [];
 
-      tickets.map((ticket) => {
+      const ticketArray = tickets.map((ticket) => {
         const airItnsArray = ticket.itinerary.airItns;
         const {
           length,
@@ -57,7 +56,7 @@ export default {
         });
 
         const tripLength = calculateTripLength(airItnsArray);
-        ticketArray.push(createTicketObject(ticket._id, ticket.tripType, tripLength, citiesArray));
+        return createTicketObject(ticket._id, ticket.tripType, tripLength, citiesArray);
       });
       return ticketArray;
     },

@@ -14,21 +14,21 @@ function createHotelObejct(hotel) {
 }
 
 function createTourArray(day) {
-  const data = [];
-  day.tours.map(async (tour) => {
+  // const data = [];
+  return day.tours.map(async (tour) => {
     if (tour.type === 'ticket') {
-      const ticket = await Ticket.find({
+      return await Ticket.find({
         _id: tour.id,
       });
-      data.push(ticket);
+      // data.push(ticket);
     } else if (tour.type === 'local') {
-      const local = await Local.find({
+      return await Local.find({
         _id: tour.id,
       });
-      data.push(local);
+      // data.push(local);
     }
   });
-  return data;
+  // return data;
 }
 
 export default {
