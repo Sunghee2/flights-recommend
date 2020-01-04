@@ -33,6 +33,7 @@
 - 개발에 필요한 로그 데이터 제공 (세부적인 내용 자유롭게 구현 가능)
 
 <hr/>
+
 ## Getting Started
 
 - Make `.env` file in `server/`
