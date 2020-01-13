@@ -43,9 +43,9 @@ export default {
       const planObject = {
         key: id,
       };
-      plan.map((p) => {
+      plan.forEach((p) => {
         const dayArray = [];
-        p.days.map((day) => {
+        p.days.forEach((day) => {
           const dayObject = {
             index: day.day,
             hotel: createHotelObejct(day.hotel),

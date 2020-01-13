@@ -46,7 +46,7 @@ export default {
         } = airItnsArray;
         const citiesArray = [];
 
-        airItnsArray.map((city, index) => {
+        airItnsArray.forEach((city, index) => {
           if (index !== 0 && checkUnique(citiesArray, city.startAirp)) {
             citiesArray.push(createCityObject(city.startAirpKr, city.startAirp));
           }
